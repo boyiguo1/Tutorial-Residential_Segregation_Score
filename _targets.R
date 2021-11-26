@@ -12,12 +12,21 @@ library(targets)
 # if you keep your functions in external scripts.
 # lapply
 
-
 # Set target-specific options such as packages.
-tar_option_set(packages = c("tidyverse"))
+tar_option_set(packages = c("tidyverse", "tidycensus"))
+
+# Set up census api key
+## TODO: Replace Sys.getenv("CENSUS_API_KEY) with your census api key string.
+##       Census api key can be requested via https://api.census.gov/data/key_signup.html
+tidycensus::census_api_key(Sys.getenv("CENSUS_API_KEY"))
 
 # End this file with a list of target objects.
 list(
-  tar_target(data, data.frame(x = sample.int(100), y = sample.int(100))),
-  tar_target(summary, summ(data)) # Call your custom functions as needed.
+  tar_target(year, 2010),
+  tar_target(state, "AL"),
+  tar_target(level, "state"),
+  tar_target(lower_lvl_stat,
+             get_decennial(geography=level,
+                           variables =  "P013001" ,
+                           year = year)) # Call your custom functions as needed.
 )

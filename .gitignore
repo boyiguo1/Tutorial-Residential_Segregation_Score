@@ -3,4 +3,9 @@
 .RData
 .Ruserdata
 
+# renv files
 renv/
+
+# targets files
+_targets/
+
