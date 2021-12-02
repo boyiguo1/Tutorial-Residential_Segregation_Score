@@ -27,6 +27,9 @@ list(
   tar_target(level, "state"),
   tar_target(lower_lvl_stat,
              get_decennial(geography=level,
-                           variables =  "P013001" ,
+                           variables =  c("P013001",    # Total
+                                          "P013002",    # Total White
+                                          "P013003"     # Total Black
+                                          ) ,
                            year = year)) # Call your custom functions as needed.
 )
