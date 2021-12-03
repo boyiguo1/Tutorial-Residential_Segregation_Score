@@ -1,35 +1,69 @@
 library(targets)
-
-# This is an example _targets.R file. Every
-# {targets} pipeline needs one.
-# Use tar_script() to create _targets.R and tar_edit()
-# to open it again for editing.
-# Then, run tar_make() to run the pipeline
-# and tar_read(summary) to view the results.
-
-# Define custom functions and other global objects.
-# This is where you write source(\"R/functions.R\")
-# if you keep your functions in external scripts.
-# lapply
+library(tarchetypes)
 
 # Set target-specific options such as packages.
 tar_option_set(packages = c("tidyverse", "tidycensus"))
+
+# Load helper funcitons
+lapply(list.files("./R", full.names = TRUE, recursive = TRUE), source)
 
 # Set up census api key
 ## TODO: Replace Sys.getenv("CENSUS_API_KEY) with your census api key string.
 ##       Census api key can be requested via https://api.census.gov/data/key_signup.html
 tidycensus::census_api_key(Sys.getenv("CENSUS_API_KEY"))
 
-# End this file with a list of target objects.
-list(
+tar_plan(
+  ## TODO: Configure your calculation by replacing the following section
   tar_target(year, 2010),
   tar_target(state, "AL"),
-  tar_target(level, "state"),
-  tar_target(lower_lvl_stat,
-             get_decennial(geography=level,
-                           variables =  c("P013001",    # Total
-                                          "P013002",    # Total White
-                                          "P013003"     # Total Black
-                                          ) ,
-                           year = year)) # Call your custom functions as needed.
+  tar_target(top_lvl, "tract"),
+  tar_target(btm_lvl, "block"),
+  
+  # Pull census data following the year, state and levels
+  # TODO: Check if the code names "P003001/2/3" are for population size for your year
+  tar_target(top_dat,
+             get_decennial(
+               geography=top_lvl,
+               variables =  c("P003001",    # Total
+                              "P003002",    # Total White
+                              "P003003"     # Total Black
+               ),
+               year = year, state = state) %>% 
+               prep_tidycensus_data()),
+  
+  tar_target(btm_dat,
+             get_decennial(
+               geography=btm_lvl,
+               variables =  c("P003001",    # Total
+                              "P003002",    # Total White
+                              "P003003"     # Total Black
+               ) ,
+               year = year, state = state)%>% 
+               prep_tidycensus_data()),
+  
+  # Validate the sum of the btm lvl stats is the top lvl stats
+  tar_target(validate_data_pull,
+              validate_by_sum(top_dat, btm_dat)
+  ),
+  
+  
+  # Calculate residential segregation  measures
+  ## Dissimilarity
+  # tar_target(
+  #   
+  # ),
+  
+  ## Interaction
+  # tar_target(
+  #   
+  # ),
+  
+  ## Isolation
+  # tar_target(
+  #   
+  # ),
+  # 
+  # Plot on a map
+  # TODO(boyiguo1): pull up the gis info for top lvl
+  
 )
