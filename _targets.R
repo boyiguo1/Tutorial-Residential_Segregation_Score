@@ -48,6 +48,10 @@ tar_plan(
   
   
   # Calculate residential segregation  measures
+  tar_target(rs_indices,
+             calc_RS_indices(top_dat, btm_dat)
+  )
+  
   ## Dissimilarity
   # tar_target(
   #   
