@@ -43,31 +43,47 @@ tar_plan(
   
   # Validate the sum of the btm lvl stats is the top lvl stats
   tar_target(validate_data_pull,
-              validate_by_sum(top_dat, btm_dat)
+             validate_by_sum(top_dat, btm_dat)
   ),
   
   
   # Calculate residential segregation  measures
   tar_target(rs_indices,
              calc_RS_indices(top_dat, btm_dat)
-  )
+  ),
   
-  ## Dissimilarity
-  # tar_target(
-  #   
-  # ),
   
-  ## Interaction
-  # tar_target(
-  #   
-  # ),
-  
-  ## Isolation
-  # tar_target(
-  #   
-  # ),
-  # 
   # Plot on a map
   # TODO(boyiguo1): pull up the gis info for top lvl
+  tar_target(top_geo_dat,
+             get_decennial(
+               geography=top_lvl,
+               variables = c(
+                 "P003001",    # Total
+                 "P003002",    # Total White
+                 "P003003" ),
+               year = year, state = state,
+               geometry = TRUE) %>% 
+               rename_all(tolower)
+  ),
+  
+  tar_target(
+    rs_map,
+    top_geo_dat %>% group_by(geoid) %>% slice(1) %>% 
+      select(-c(variable, value)) %>% 
+      ungroup() %>% 
+      full_join(
+        rs_indices
+      ) %>% 
+      ggplot(aes(fill = rs_dissimilarity)) +
+      geom_sf(color = NA) + 
+      scale_fill_viridis_c(option = "magma")
+    
+    # TODO(boyiguo1): add table caption for which area this , and level it is.
+    # e.g. (Tract level residential segregation score of State)
+    
+    # TODO(boyiguo1): add notion, grey is missing (i.e. no minority/majority population in the area)
+    # TODO(boyoiguo1): add explaining the scale
+  )
   
 )
