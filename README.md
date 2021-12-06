@@ -3,6 +3,42 @@
 
 # Calculating Residential Segregation Scores
 
+The purpose of this repository is to provide a reproducible pipeline,
+implemented in [R](https://www.r-project.org/), to investigate
+residential segregation using US census data. This repository provides
+convenience to social scientists who have needs to access residential
+segregation indices for their research. While the current repository
+primarily focuses on three scores \[TODO(boyiguo1): \], we hope to
+inspire others to adapt the pipeline and expand this calculation for
+their own research needs.
+
+## Get Started
+
+1.  Download [R](https://www.r-project.org/) and (RStudio
+    IDE)\[<https://www.rstudio.com/products/rstudio/download/>\]
+2.  Install the necessary workflow packages
+    [`targets`](https://cran.r-project.org/web/packages/targets/index.html)
+    and [`renv`](https://rstudio.github.io/renv/articles/renv.html) if
+    you don’t already have
+3.  Open the R project in an R console and call `renv::restore()` to
+    install the required R packages. Please give permission to install
+    the necessary packages. This will mirror the version of packages
+    used in the creation of the manuscript exactly.
+4.  Acquire your census api key string via
+    <https://api.census.gov/data/key_signup.html>, and replace in the
+    `_targets.R` file
+5.  Modify the code to reflect your research needs. The places that
+    requires individualization is marked with the tag `TODO:`. You can
+    use [global
+    search](https://support.rstudio.com/hc/en-us/articles/200710523-Navigating-Code)
+    to attain a list of modifications within (RStudio
+    IDE)\[<https://www.rstudio.com/products/rstudio/download/>\].
+6.  call the `targets::tar_make()` function to run the pipeline.
+
+## Example
+
+\[TODO: Add Alabama Map\]
+
 ## Remarks
 
 1.  When no majority, don’t know how to calculate dissimilarity, and
@@ -13,31 +49,6 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of Tutorial-Residential\_Segregation\_Score is to …
+## Replated Resources
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-![](README_files/figure-gfm/pressure-1.png)<!-- -->
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub.
+#### References
