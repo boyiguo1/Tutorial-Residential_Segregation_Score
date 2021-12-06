@@ -13,7 +13,7 @@ calc_RS_indices <- function(top_dat, btm_dat){
   if(any(top_dat$n_white==0))
     warning("Geographic area with no majority exists, and marked with missing(`NA`) scores.")
     
-  browser()
+  # browser()
   # ful_dat <- 
   full_join(
     x = top_dat %>% select(-name),
@@ -35,21 +35,22 @@ calc_RS_indices <- function(top_dat, btm_dat){
       # Interaction index  for blacks (minority population) and white (majority population)
       int_wb = (n_black_btm/n_black_top)*(n_white_btm/n_total_btm), 
       iso_b = (n_black_btm/n_black_top)*(n_black_btm/n_total_btm) 
-    ) 
+    ) %>% 
+      group_by(geoid) %>%
+      summarize(
+        rs_dissimilarity = sum(d_wb, na.rm = T),
+        rs_interaction = sum(int_wb, na.rm = T),
+        rs_isolation = sum(iso_b, na.rm = T),
+        .groups = "drop") %>% 
+    # Note: RS scores of regions with no minority/majority population are set to NAs
+    right_join(
+      y = top_dat) %>% 
+    select(geoid, name,
+           starts_with("n_"),
+           starts_with("rs_")
+           )
 
   # TODO(boyiguo1): needs to verify if thestat is correct now.  
   
   
-  # TODO(boyiguo1): merge back to the top level data, and set no minority/majority data to NAs
-  
-  # %>% 
-  #   group_by(geo_id) %>% 
-  #   summarize(
-  #     dissimilarity = sum(d_wb, na.rm = T),
-  #     interaction = sum(int_wb, na.rm = T),
-  #     isolation = sum(iso_b, na.rm = T),
-  #     .groups = "drop") %>% 
-  #   mutate(fips = paste0(state, county))
-  # 
-  # return(merged_dat)
 }
