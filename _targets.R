@@ -67,6 +67,9 @@ tar_plan(
                rename_all(tolower)
   ),
   
+  # TODO(boyiguo1): use map to create a list of geom_map for every measures.
+  # TODO(boyiguo1): joint the maps
+  
   tar_target(
     rs_map,
     top_geo_dat %>% group_by(geoid) %>% slice(1) %>% 
