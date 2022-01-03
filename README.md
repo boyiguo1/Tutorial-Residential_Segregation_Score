@@ -5,7 +5,8 @@
 
 The purpose of this repository is to provide a simple and reproducible
 [R](https://www.r-project.org/) pipeline to investigate residential
-segregation using US census data. The pipeline contains two components:
+segregation (RS) using US census data. The pipeline contains two
+components:
 
 1.  pulling decennial US census data of Year 2000, 2010, 2020 via R
     package [tidycensus](https://walker-data.com/tidycensus/index.html)
@@ -16,8 +17,9 @@ segregation using US census data. The pipeline contains two components:
 We hope this work would relieve social scientists from repetitive data
 pulling, and inspire to adapt the reproducible pipeline.
 
-> If you don’t have time to go through the whole documentation, please
-> finish reading the [Remarks](#remarks) Section
+> Note: If you don’t have the time to go through the whole
+> documentation, please finish reading the [Remarks](#remarks) Section
+> before modifying the code
 
 ## Get Started
 
@@ -32,30 +34,42 @@ pulling, and inspire to adapt the reproducible pipeline.
     necessary packages. This will mirror the version of packages used in
     the creation of the work exactly.
 4.  Acquire your census api key string via
-    <https://api.census.gov/data/key_signup.html>, and replace in the
-    `_targets.R` file
+    <https://api.census.gov/data/key_signup.html>, and replace at the
+    beginning of the `_targets.R` file
 5.  Modify the code to reflect your research needs. We highlight the
-    places that requires customizationthe tag `TODO:`, which can be
-    enlisted via [global
+    places that requires customization with the tag `TODO:`, which can
+    be enlisted via a [global
     search](https://support.rstudio.com/hc/en-us/articles/200710523-Navigating-Code),
     i.e. `cmd/control + shift + f`.
-
--   Change year, states, and geographic levels that your indices depends
-    on
--   Confirm if the variable codes in census data bases match with your
-    prefered variables, e.g. total, total number of Majority, and total
-    number of Minority. The variable code could be different depending
-    on the year you use. For example: “P003003” means *Total!!Population
-    of one race!!White alone* in [2000
-    data](https://api.census.gov/data/2000/dec/sf1/variables.html), and
-    means *Total!!Black or African American* alone [2010
-    data](https://api.census.gov/data/2010/dec/sf1/variables.html)
-
-5.  call the `targets::tar_make()` function to run the pipeline.
+    -   Change year, states, and geographic levels, where the upper
+        level is your preferred level and the lower level is the level
+        constituent the upper level. For example, in order to calculate
+        county level indices (upper level), we need to have census tract
+        level statistics (lower level).
+    -   **Confirm if the variable codes in census databases match with
+        your preferred variables.** The variable code is year-specific,
+        i.e. could be different depending on the year you use. For
+        example, the same variable code `P003003` means
+        `Total!!Population of one race!!White alone` in [2000
+        data](https://api.census.gov/data/2000/dec/sf1/variables.html),
+        and means `Total!!Black or African American alone` [2010
+        data](https://api.census.gov/data/2010/dec/sf1/variables.html)
+6.  call `targets::tar_make()` in the console to run the pipeline.
 
 ## Examples
 
+In this section, we provide two examples for calculating RS indices of
+*one state* (stored in [`master`
+branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/master))
+or *multiple states* (stored in [`Zheutlin`
+branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/Zheutlin))
+respectively.
+
+### One State Example: *2020 Alabama Dissimilarity Index at County Level*
+
 \[TODO: Add Alabama Map\]
+
+### Multiple States Example: *2010 RS Indices of Medication Desert at Census Tract Level*
 
 ## Remarks
 
