@@ -60,7 +60,6 @@ tar_plan(
   
   # Create Map --------------------------------------------------------------
   # Plot on a map
-  # TODO(boyiguo1): pull up the gis info for top lvl
   tar_target(top_geo_dat,
              get_decennial(
                geography=top_lvl,
@@ -83,13 +82,15 @@ tar_plan(
       ) %>% 
       ggplot(aes(fill = rs_dissimilarity)) +
       geom_sf(color = NA) + 
-      scale_fill_viridis_c(option = "magma")
+      scale_fill_viridis_c(
+        name = "Dissimilarity",
+        option = "magma",
+        limits = c(0,1)
+        ) +
+      theme_minimal() +
+      labs(caption = paste0(year, " ", state, " Residential Segregation Index (Dissimilarity) at ",
+                            top_lvl," level.\n", "Transparent areas mean missing scores"))
     
-    # TODO(boyiguo1): add table caption for which area this , and level it is.
-    # e.g. (Tract level residential segregation score of State)
-    
-    # TODO(boyiguo1): add notion, grey is missing (i.e. no minority/majority population in the area)
-    # TODO(boyoiguo1): add explaining the scale
   )
   
 )
