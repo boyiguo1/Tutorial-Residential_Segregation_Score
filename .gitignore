@@ -2,9 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-
 # renv files
-
 # targets files
 _targets/
-
+data
