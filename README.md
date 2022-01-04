@@ -65,9 +65,14 @@ or *multiple states* (stored in [`meds_desert`
 branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/meds_desert))
 respectively.
 
-### One State Example: *2020 Alabama Dissimilarity Index at County Level*
+### One State Example: *2010 Alabama Dissimilarity Index at County Level*
 
-\[TODO: Add Alabama Map\]
+| ![](README_files/figure/2010_AL_Disml_tract.png) | ![](README_files/figure/2010_AL_Disml_block.png) |
+|--------------------------------------------------|--------------------------------------------------|
+
+**Figure 1**: 2010 Alabama Dissimilarity Index at county level
+calculated with census tract level statistics *(a)* and block level
+statistics *(b)*
 
 ### Multiple States Example: *2010 RS Indices of Medication Desert at Census Tract Level*
 
@@ -89,7 +94,7 @@ respectively.
     race, e.g. P003008, Total!!Two or More Races in [2010 census
     data](https://api.census.gov/data/2010/dec/sf1/variables.html)
 
-4.  Error prevention is implemented in. It is not guareenteed to caught
+4.  Error prevention is implemented in. It is not guaranteed to caught
     all errors
 
 5.  When reporting the rs scores, we report up to 3 decimal places.
@@ -118,7 +123,7 @@ respectively.
 2.  For ease of collaborators, it is better to generate the geoid when
     pulling data, instead of giving individual FIPS for different
     levels. It is not a big deal, but potentially create human error
-    when concetenating the FIPS. for example leading zero problem
+    when concatenating the FIPS. for example leading zero problem
 
 3.  Carefully choose which level of fips you want to have. potentially
     leading to selection bias, where severity is unknown.

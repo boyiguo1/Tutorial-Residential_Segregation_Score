@@ -36,8 +36,10 @@ We hope this work would relieve social scientists from repetitive data pulling, 
 ## Examples
 In this section, we provide two examples for calculating RS indices of _one state_ (stored in [`master` branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/master)) or _multiple states_ (stored in [`meds_desert` branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/meds_desert)) respectively.
 
-### One State Example: _2020 Alabama Dissimilarity Index at County Level_
-[TODO: Add Alabama Map]
+### One State Example: _2010 Alabama Dissimilarity Index at County Level_
+| ![](README_files/figure/2010_AL_Disml_tract.png)     | ![](README_files/figure/2010_AL_Disml_block.png)|
+| ----------- | ----------- |
+__Figure 1__: 2010 Alabama Dissimilarity Index at county level calculated with census tract level statistics _(a)_  and block level statistics _(b)_ 
 
 ### Multiple States Example: _2010 RS Indices of Medication Desert at Census Tract Level_
 
@@ -52,7 +54,7 @@ __Numeric Calculation__
 
 3. Meanwhile, when we categorize people, we only considered the people who reported one race, while it seems possible to report more than 1 race, e.g. P003008, Total!!Two or More Races in [2010 census data](https://api.census.gov/data/2010/dec/sf1/variables.html) 
 
-4. Error prevention is implemented in. It is not guareenteed to caught all errors
+4. Error prevention is implemented in. It is not guaranteed to caught all errors
 
 
 4. When reporting the rs scores, we report up to 3 decimal places. However, this can be modified by go to xxx.
@@ -71,7 +73,7 @@ __Practice__
 
 1. Sending requests, FIPS, leading zero, Excel automatically omitting leading zeros. enclose the FIPS with quoationa marks
 
-2. For ease of collaborators, it is better to generate the geoid when pulling data, instead of giving individual FIPS for different levels. It is not a big  deal, but potentially create human error when concetenating the FIPS. for example leading zero problem
+2. For ease of collaborators, it is better to generate the geoid when pulling data, instead of giving individual FIPS for different levels. It is not a big  deal, but potentially create human error when concatenating the FIPS. for example leading zero problem
 
 3. Carefully choose which level of fips you want to have. potentially leading to selection bias, where severity is unknown.
 
