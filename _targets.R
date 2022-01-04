@@ -13,12 +13,16 @@ lapply(list.files("./R", full.names = TRUE, recursive = TRUE), source)
 tidycensus::census_api_key(Sys.getenv("CENSUS_API_KEY"))
 
 tar_plan(
+  
+  # Configuration -----------------------------------------------------------
   ## TODO: Configure your calculation by replacing the following section
   tar_target(year, 2010),
   tar_target(state, "AL"),
-  tar_target(top_lvl, "tract"),
-  tar_target(btm_lvl, "block"),
+  tar_target(top_lvl, "county"),
+  tar_target(btm_lvl, "tract"),
   
+  
+  # Census Data Pull --------------------------------------------------------
   # Pull census data following the year, state and levels
   # TODO: Check if the code names "P003001/2/3" are for population size for your year
   tar_target(top_dat,
@@ -47,12 +51,14 @@ tar_plan(
   ),
   
   
+  # RS Calculation ----------------------------------------------------------
   # Calculate residential segregation  measures
   tar_target(rs_indices,
              calc_RS_indices(top_dat, btm_dat)
   ),
   
   
+  # Create Map --------------------------------------------------------------
   # Plot on a map
   # TODO(boyiguo1): pull up the gis info for top lvl
   tar_target(top_geo_dat,
@@ -66,9 +72,6 @@ tar_plan(
                geometry = TRUE) %>% 
                rename_all(tolower)
   ),
-  
-  # TODO(boyiguo1): use map to create a list of geom_map for every measures.
-  # TODO(boyiguo1): joint the maps
   
   tar_target(
     rs_map,
