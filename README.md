@@ -145,13 +145,16 @@ branch.
 <!-- badges: start -->
 <!-- badges: end -->
 
-## Questions/Discussion Board
+## Questions/Contribution
 
-Please prefer questions or bug reports via
+We prefer questions or bug reports via
 [Issues](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/issues/)
 tab of the repository, such that the answer to your question can serve a
 broader audience. We are also open to questions via Email if you don’t
 feel comfortable with the aforementioned approach.
+
+If you would like to contribute to this tutorial, we are welcome any
+contribution via pull requests so that you get proper credit.
 
 #### References
 
