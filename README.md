@@ -82,6 +82,13 @@ block level.
 calculated with census tract level statistics *(a)* and block level
 statistics *(b)*
 
+> Note: For those who are interested in 2020 AL Indices, please refer to
+> [test
+> case](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/issues/7#issuecomment-1005776330)
+> in [Issue
+> 7](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/issues/7)
+> as an example of configuration
+
 ### Multiple States Example: *2010 RS Indices of Medication Desert at Census Tract Level*
 
 The example demonstrate how to calculate residential segregation for

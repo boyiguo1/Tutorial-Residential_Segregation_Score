@@ -43,6 +43,8 @@ In this example, we provide the pipeline to calculate the indices for a single s
 | ----------- | ----------- |
 __Figure 1__: 2010 Alabama Dissimilarity Index at county level calculated with census tract level statistics _(a)_  and block level statistics _(b)_ 
 
+> Note: For those who are interested in 2020 AL Indices, please refer to [test case](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/issues/7#issuecomment-1005776330) in [Issue 7](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/issues/7) as an example of configuration
+
 ### Multiple States Example: _2010 RS Indices of Medication Desert at Census Tract Level_
 The example demonstrate how to calculate residential segregation for multiple states collectively, either via an intput file or via an inline code. Please find the pipeline via [`meds_desert`](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/meds_desert) branch.
 
