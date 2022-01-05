@@ -26,10 +26,6 @@ calc_RS_indices <- function(top_dat, btm_dat){
     # Calculate lower level stats
     mutate( 
       d_wb = n_total_btm * abs(p_minority_btm - p_minority_top)/(2*n_total_top*p_minority_top*(1-p_minority_top)),
-      
-      # another way of calculating dissimilarity measure
-      # d_wb2 = .5*abs(white/cnty_white - black/cnty_black),
-      
       # Interaction index  for blacks (minority population) and white (majority population)
       int_wb = (n_minority_btm/n_minority_top)*(n_majority_btm/n_total_btm), 
       iso_b = (n_minority_btm/n_minority_top)*(n_minority_btm/n_total_btm) 
