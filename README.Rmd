@@ -37,11 +37,14 @@ We hope this work would relieve social scientists from repetitive data pulling, 
 In this section, we provide two examples for calculating RS indices of _one state_ (stored in [`master` branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/master)) or _multiple states_ (stored in [`meds_desert` branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/meds_desert)) respectively.
 
 ### One State Example: _2010 Alabama Dissimilarity Index at County Level_
-In this example, we provide the pipeline to calculate the indices for a single state. As an bonus, a section of code that plots a index to the map are supplied, as shown in _Figure 1_. ^[Only produce one of the graph, where the caption needs to be revised]. _Figure 1_ includes two maps of the 2010 Alabama County Level dissimilarity index, White (majority) with respect to  Black (minority), calculated using different definitions of lower level geographic unit, i.e. census tract level and block level. 
+In this example, we provide the pipeline to calculate the indices for a single state. As an bonus, a section of code that plots a index to the map are supplied, as shown in _Figure 1_\*. _Figure 1_ includes two maps of the 2010 Alabama County Level dissimilarity index, White (majority) with respect to  Black (minority), calculated using different definitions of lower level geographic unit, i.e. census tract level and block level. 
+
+>\*: The example pipelie only produces one of the plots, where caption had been manually modified.
 
 | ![](README_files/figure/2010_AL_Disml_tract.png)     | ![](README_files/figure/2010_AL_Disml_block.png)|
 | ----------- | ----------- |
 __Figure 1__: 2010 Alabama Dissimilarity Index at county level calculated with census tract level statistics _(a)_  and block level statistics _(b)_ 
+
 
 > Note: For those who are interested in 2020 AL Indices, please refer to [test case](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/issues/7#issuecomment-1005776330) in [Issue 7](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/issues/7) as an example of configuration
 

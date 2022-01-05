@@ -69,11 +69,13 @@ respectively.
 
 In this example, we provide the pipeline to calculate the indices for a
 single state. As an bonus, a section of code that plots a index to the
-map are supplied, as shown in *Figure 1*. [1]. *Figure 1* includes two
-maps of the 2010 Alabama County Level dissimilarity index, White
-(majority) with respect to Black (minority), calculated using different
-definitions of lower level geographic unit, i.e. census tract level and
-block level.
+map are supplied, as shown in *Figure 1*\*. *Figure 1* includes two maps
+of the 2010 Alabama County Level dissimilarity index, White (majority)
+with respect to Black (minority), calculated using different definitions
+of lower level geographic unit, i.e. census tract level and block level.
+
+> \*: The example pipelie only produces one of the plots, where caption
+> had been manually modified.
 
 | ![](README_files/figure/2010_AL_Disml_tract.png) | ![](README_files/figure/2010_AL_Disml_block.png) |
 |--------------------------------------------------|--------------------------------------------------|
@@ -164,5 +166,3 @@ If you would like to contribute to this tutorial, we are welcome any
 contribution via pull requests so that you get proper credit.
 
 #### References
-
-[1] Only produce one of the graph, where the caption needs to be revised
