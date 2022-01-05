@@ -29,8 +29,8 @@ tar_plan(
              get_decennial(
                geography=top_lvl,
                variables =  c("P003001",    # Total
-                              "P003002",    # Total White
-                              "P003003"     # Total Black
+                              "P003002",    # Total Majority, e.g. White
+                              "P003003"     # Total Minority, e.g. Black
                ),
                year = year, state = state) %>% 
                prep_tidycensus_data()),
@@ -39,8 +39,8 @@ tar_plan(
              get_decennial(
                geography=btm_lvl,
                variables =  c("P003001",    # Total
-                              "P003002",    # Total White
-                              "P003003"     # Total Black
+                              "P003002",    # Total Majority, e.g. White
+                              "P003003"     # Total Minority, e.g. Black
                ) ,
                year = year, state = state)%>% 
                prep_tidycensus_data()),
@@ -65,8 +65,9 @@ tar_plan(
                geography=top_lvl,
                variables = c(
                  "P003001",    # Total
-                 "P003002",    # Total White
-                 "P003003" ),
+                 "P003002",    # Total Majority, e.g. White
+                 "P003003"     # Total Minority, e.g. Black
+                 ),
                year = year, state = state,
                geometry = TRUE) %>% 
                rename_all(tolower)
