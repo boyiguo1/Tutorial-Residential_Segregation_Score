@@ -69,15 +69,11 @@ respectively.
 
 In this example, we provide the pipeline to calculate the indices for a
 single state. As an bonus, a section of code that plots a index to the
-map are supplied, as shown in *Figure 1*. [1]. the Alabama County Level
-using 2010 US census data, deposited in the
-[`master`](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/master)
-branch of this repository. The example also include the code to plot the
-county-level dissimilarity index on the Alabama map. As an demonstration
-of how easy the pipeline can be produce customized indices, we present
-*Figure 1* which contains the county-level dissimilarity score
-calculated with census tract level statistics and block level
-statistics.
+map are supplied, as shown in *Figure 1*. [1]. *Figure 1* includes two
+maps of the 2010 Alabama County Level dissimilarity index, White
+(majority) with respect to Black (minority), calculated using different
+definitions of lower level geographic unit, i.e. census tract level and
+block level.
 
 | ![](README_files/figure/2010_AL_Disml_tract.png) | ![](README_files/figure/2010_AL_Disml_block.png) |
 |--------------------------------------------------|--------------------------------------------------|
@@ -88,7 +84,11 @@ statistics *(b)*
 
 ### Multiple States Example: *2010 RS Indices of Medication Desert at Census Tract Level*
 
-The example demonstrate how to calculate
+The example demonstrate how to calculate residential segregation for
+multiple states collectively, either via an intput file or via an inline
+code. Please find the pipeline via
+[`meds_desert`](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/meds_desert)
+branch.
 
 ## Remarks
 
@@ -144,6 +144,14 @@ The example demonstrate how to calculate
 
 <!-- badges: start -->
 <!-- badges: end -->
+
+## Questions/Discussion Board
+
+Please prefer questions or bug reports via
+[Issues](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/issues/)
+tab of the repository, such that the answer to your question can serve a
+broader audience. We are also open to questions via Email if you don’t
+feel comfortable with the aforementioned approach.
 
 #### References
 
