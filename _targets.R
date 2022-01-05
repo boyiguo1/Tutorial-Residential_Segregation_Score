@@ -32,6 +32,9 @@ tar_plan(
   # tar_target(states, c("Arizona", "Utah"))
   tar_target(top_lvl, "tract"),
   tar_target(btm_lvl, "block"),
+  tar_target(census_code_total, "P003001"), # 2010 Total
+  tar_target(census_code_maj,   "P003002"), # 2010 Total White (Majority)
+  tar_target(census_code_min,   "P003003"), # 2010 Total Black (Minority)
   
   
   # Census Data Pull --------------------------------------------------------
@@ -40,9 +43,10 @@ tar_plan(
   tar_target(top_dat,
              get_decennial(
                geography=top_lvl,
-               variables =  c("P003001",    # Total
-                              "P003002",    # Total Majority, e.g. White
-                              "P003003"     # Total Minority, e.g. Black
+               variables =  c(
+                 n_total = census_code_total,    
+                 n_majority = census_code_maj,    
+                 n_minority = census_code_min    
                ),
                year = year, state = states) %>% 
                prep_tidycensus_data(),
@@ -52,9 +56,10 @@ tar_plan(
   tar_target(btm_dat,
              get_decennial(
                geography=btm_lvl,
-               variables =  c("P003001",    # Total
-                              "P003002",    # Total Majority, e.g. White
-                              "P003003"     # Total Minority, e.g. Black
+               variables =  c(
+                 n_total = census_code_total,    
+                 n_majority = census_code_maj,    
+                 n_minority = census_code_min    
                ) ,
                year = year, state = states) %>% 
                prep_tidycensus_data(),

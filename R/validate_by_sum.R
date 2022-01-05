@@ -22,8 +22,8 @@ validate_by_sum <- function(top_dat, btm_dat){
 
   if(with(ful_dat, 
           n_total.x != n_total.y ||
-          n_white.x != n_white.y ||
-          n_black.x != n_black.y))
+          n_majority.x != n_majority.y ||
+          n_minority.x != n_minority.y))
     stop("Bottom level doesn't sum up to top level population size. Check data pull!")
  
   return(NULL) 
