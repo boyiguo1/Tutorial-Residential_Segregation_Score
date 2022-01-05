@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Calculating Residential Segregation Scores
+# Calculating Residential Segregation Indices
 
 The purpose of this repository is to provide a simple and reproducible [R](https://www.r-project.org/) pipeline to investigate residential segregation (RS) using US census data. The pipeline contains two components:
 
@@ -37,16 +37,19 @@ We hope this work would relieve social scientists from repetitive data pulling, 
 In this section, we provide two examples for calculating RS indices of _one state_ (stored in [`master` branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/master)) or _multiple states_ (stored in [`meds_desert` branch](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/meds_desert)) respectively.
 
 ### One State Example: _2010 Alabama Dissimilarity Index at County Level_
+In this example, we provide the pipeline to calculate the indices for a single state. As an bonus, a section of code that plots a index to the map are supplied, as shown in _Figure 1_. ^[Only produce one of the graph, where the caption needs to be revised]. _Figure 1_ includes two maps of the 2010 Alabama County Level dissimilarity index, White (majority) with respect to  Black (minority), calculated using different definitions of lower level geographic unit, i.e. census tract level and block level. 
+
 | ![](README_files/figure/2010_AL_Disml_tract.png)     | ![](README_files/figure/2010_AL_Disml_block.png)|
 | ----------- | ----------- |
 __Figure 1__: 2010 Alabama Dissimilarity Index at county level calculated with census tract level statistics _(a)_  and block level statistics _(b)_ 
 
 ### Multiple States Example: _2010 RS Indices of Medication Desert at Census Tract Level_
+The example demonstrate how to calculate residential segregation for multiple states collectively, either via an intput file or via an inline code. Please find the pipeline via [`meds_desert`](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/meds_desert) branch.
 
 
 ## Remarks
 
-__Numeric Calculation__
+### Numeric Calculation
 
 1. When no majority, don't know how to calculate dissimilarity, and interaction score should be default to 0, and isolation score should be 1 if there is no other minority. In our case, we default them to 0.
 
@@ -59,7 +62,7 @@ __Numeric Calculation__
 
 4. When reporting the rs scores, we report up to 3 decimal places. However, this can be modified by go to xxx.
 
-__Interpretation__
+### Interpretation
 
 1. What it is designed for originally. How it would be interpreted when using nationally
 
@@ -69,7 +72,7 @@ __Interpretation__
 
 
 
-__Practice__
+### Practice
 
 1. Sending requests, FIPS, leading zero, Excel automatically omitting leading zeros. enclose the FIPS with quoationa marks
 

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Calculating Residential Segregation Scores
+# Calculating Residential Segregation Indices
 
 The purpose of this repository is to provide a simple and reproducible
 [R](https://www.r-project.org/) pipeline to investigate residential
@@ -67,6 +67,18 @@ respectively.
 
 ### One State Example: *2010 Alabama Dissimilarity Index at County Level*
 
+In this example, we provide the pipeline to calculate the indices for a
+single state. As an bonus, a section of code that plots a index to the
+map are supplied, as shown in *Figure 1*. [1]. the Alabama County Level
+using 2010 US census data, deposited in the
+[`master`](https://github.com/boyiguo1/Tutorial-Residential_Segregation_Score/tree/master)
+branch of this repository. The example also include the code to plot the
+county-level dissimilarity index on the Alabama map. As an demonstration
+of how easy the pipeline can be produce customized indices, we present
+*Figure 1* which contains the county-level dissimilarity score
+calculated with census tract level statistics and block level
+statistics.
+
 | ![](README_files/figure/2010_AL_Disml_tract.png) | ![](README_files/figure/2010_AL_Disml_block.png) |
 |--------------------------------------------------|--------------------------------------------------|
 
@@ -76,9 +88,11 @@ statistics *(b)*
 
 ### Multiple States Example: *2010 RS Indices of Medication Desert at Census Tract Level*
 
+The example demonstrate how to calculate
+
 ## Remarks
 
-**Numeric Calculation**
+### Numeric Calculation
 
 1.  When no majority, don’t know how to calculate dissimilarity, and
     interaction score should be default to 0, and isolation score should
@@ -100,7 +114,7 @@ statistics *(b)*
 5.  When reporting the rs scores, we report up to 3 decimal places.
     However, this can be modified by go to xxx.
 
-**Interpretation**
+### Interpretation
 
 1.  What it is designed for originally. How it would be interpreted when
     using nationally
@@ -115,7 +129,7 @@ statistics *(b)*
     conservatory, neither is majority and minority in that sense. How to
     defined.
 
-**Practice**
+### Practice
 
 1.  Sending requests, FIPS, leading zero, Excel automatically omitting
     leading zeros. enclose the FIPS with quoationa marks
@@ -132,3 +146,5 @@ statistics *(b)*
 <!-- badges: end -->
 
 #### References
+
+[1] Only produce one of the graph, where the caption needs to be revised
