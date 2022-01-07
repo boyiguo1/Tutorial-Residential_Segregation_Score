@@ -101,27 +101,35 @@ branch.
 
 ## Remarks
 
+In this section, we discuss our observations when creating the indices,
+which includes thoughts on numeric calculation with census data,
+interpretation, and practice of data sharing.
+
 ### Numeric Calculation
 
-1.  When no majority, don’t know how to calculate dissimilarity, and
-    interaction score should be default to 0, and isolation score should
-    be 1 if there is no other minority. In our case, we default them
-    to 0.
+1.  During the calculation, we observe that depending on how the areal
+    units are defined, it is possible to have areas with no majority or
+    minority population at all, i.e. *n*<sub>majority</sub> = 0 or
+    *n*<sub>minority</sub> = 0. This complicates the calculation of the
+    scores, for example, introducing infinite or `NaN` as a score.
+    Without finding any remedies in the literature yet, we defined these
+    indices as missing values collectively.
 
-2.  It is very important to confirm your variable code. Even though we
-    build error prevention mechanism in the code. However, that doesn’t
-    eliminate all the errors.
+2.  It is very important to **confirm if your variable codes match with
+    your anticipated variable with the census data base**. Even though
+    we build error prevention mechanism in the code to numerically
+    verifies, we are not certain it will catch the error 100%
+    particularly with the flexibility that allow users’ customization.
+    We provided how code changes in different years, see [Get
+    started](#get-started).
 
-3.  Meanwhile, when we categorize people, we only considered the people
-    who reported one race, while it seems possible to report more than 1
-    race, e.g. P003008, Total!!Two or More Races in [2010 census
-    data](https://api.census.gov/data/2010/dec/sf1/variables.html)
+3.  In the calculation, we do not assume that the minority numerically
+    complements the majority, i.e the numbers of minority and majority
+    sums to the total. These indices would be different from the indices
+    calculated with the complementing assumption.
 
-4.  Error prevention is implemented in. It is not guaranteed to caught
-    all errors
-
-5.  When reporting the rs scores, we report up to 3 decimal places.
-    However, this can be modified by go to xxx.
+4.  Scores are calculated as defined. Revser coding to have the same
+    direction would require manual work.
 
 ### Interpretation
 
@@ -138,6 +146,18 @@ branch.
     conservatory, neither is majority and minority in that sense. How to
     defined.
 
+4.  The implementation of the three scores in this pipeline is neither
+    an endorsement nor disapprovement of the indices. It simply serves
+    the purpose of calculation convienience. Without much expertise in
+    measurement thoerem, we advise users to use the indices with
+    cautious, and be critical when interpreting the results.
+
+5.  Based on Massey and Dunton, the use of RS measurements should be not
+    be limited to 1 index, instead with several.
+
+> “Our survey of the research literature leads us to conclude that
+> segregation should be measured not with one index, but with several.”
+
 ### Practice
 
 1.  Sending requests, FIPS, leading zero, Excel automatically omitting
@@ -150,6 +170,11 @@ branch.
 
 3.  Carefully choose which level of fips you want to have. potentially
     leading to selection bias, where severity is unknown.
+
+4.  Meanwhile, when we categorize people, we only considered the people
+    who reported one race, while it seems possible to report more than 1
+    race, e.g. P003008, Total!!Two or More Races in [2010 census
+    data](https://api.census.gov/data/2010/dec/sf1/variables.html)
 
 <!-- badges: start -->
 <!-- badges: end -->
