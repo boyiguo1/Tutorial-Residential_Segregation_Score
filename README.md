@@ -10,9 +10,14 @@ components:
 
 1.  pulling decennial US census data of Year 2000, 2010, 2020 via R
     package [tidycensus](https://walker-data.com/tidycensus/index.html)
-2.  calculating three residential segregation indices, including
+2.  calculating three residential segregation indices\*, including
     dissimilarity, isolation and interaction indices, at the preferred
     geographical level, e.g. county or census tract level
+
+> \*: The implementation of the three scores in this pipeline is neither
+> endorsement nor an emphasize. Researchers should study all residential
+> segregation indices to choose the ones that match with their study
+> objectives.
 
 We hope this work would relieve social scientists from repetitive data
 pulling, and inspire to adapt the reproducible pipeline.
@@ -128,56 +133,59 @@ interpretation, and practice of data sharing.
     sums to the total. These indices would be different from the indices
     calculated with the complementing assumption.
 
-4.  Scores are calculated as defined. Revser coding to have the same
-    direction would require manual work.
+4.  The indices are claculated using their definition, which means they
+    are possibly directionally different in their interpretation,
+    e.g. interaction and isolation indices. The user will have to define
+    their own reverse coding function to yield directionally consistent
+    interpretation.
 
 ### Interpretation
 
-1.  What it is designed for originally. How it would be interpreted when
-    using nationally
+The interpretation of residential segregation indices gets complicated
+quickly depending on their areal definition. Hence, we don’t offer too
+much suggestions. We highly recommended the user to carefully go through
+Massey and Denton (1988) for more details when planning which indices
+and which areal unit to use in calculation. For people who seeks
+real-world example, we defer to Iceland and Weinberg (2002).
 
-2.  When calculating the indices at a geogrphic level, it is possible to
-    define the lower level that constutes the upper level differently,
-    as we have seen in the Alabama example. How much it changes.
+The followings are a few questions we had when calculating the
+residential segregation across the US, instead of specific metropolitan
+areas in previous studies.
 
-3.  what would be the rs score interpreted when few self-defined
-    majority and minority located. e.g. When calculating the indices of
-    White (majority) compared to Black (minority) in a Indian
-    conservatory, neither is majority and minority in that sense. How to
-    defined.
+1.  The residential segregation indices are caluclated by agregating
+    statistics of smaller areal units, where the lower arear units can
+    be defined differently. For example, when calculating the
+    residentital segregation indices at the county level, it is possible
+    to define the smaller areal unit be census tract or block. Different
+    definitions can yield inconsistent scores, both the magnitude of
+    scores and the ranking of the scores. How to interpret the
+    inconsistency due to the different definitions of lower area units
+    remains as a question to us.
 
-4.  The implementation of the three scores in this pipeline is neither
-    an endorsement nor disapprovement of the indices. It simply serves
-    the purpose of calculation convienience. Without much expertise in
-    measurement thoerem, we advise users to use the indices with
-    cautious, and be critical when interpreting the results.
+2.  During calculating RS across multiple states, we observed there are
+    few majority and minority with in an areal unit when we don’t assume
+    majority and minority sum to total. For example, if we defined the
+    White as majority and the Black as minority, there are few majority
+    and minority in a areal unit that are in Indian reservation. Are the
+    indices still well-defined in this case?
 
-5.  Based on Massey and Dunton, the use of RS measurements should be not
-    be limited to 1 index, instead with several.
+3.  With improved efforts to collect more diverse racial information, it
+    is possible to have individuals who have more than one racial
+    background. For example, in [2010 census
+    data](https://api.census.gov/data/2010/dec/sf1/variables.html), we
+    have a variable code `P003008` for `Total!!Two or More Races`. How
+    to utilize this informaiton in calculating racial RS can lead to a
+    fruitful discussion.
 
-> “Our survey of the research literature leads us to conclude that
-> segregation should be measured not with one index, but with several.”
+### Data Sharing Practice
 
-### Practice
+1.  When sharing the indices with FIPS and GEOID as identifier, it is
+    very important to treat FIPS and GEOID are characters/strings
+    instead of numeric values because of the leading zeros. This
+    practice will save more time and produce less error when sharing
+    with others.
 
-1.  Sending requests, FIPS, leading zero, Excel automatically omitting
-    leading zeros. enclose the FIPS with quoationa marks
-
-2.  For ease of collaborators, it is better to generate the geoid when
-    pulling data, instead of giving individual FIPS for different
-    levels. It is not a big deal, but potentially create human error
-    when concatenating the FIPS. for example leading zero problem
-
-3.  Carefully choose which level of fips you want to have. potentially
-    leading to selection bias, where severity is unknown.
-
-4.  Meanwhile, when we categorize people, we only considered the people
-    who reported one race, while it seems possible to report more than 1
-    race, e.g. P003008, Total!!Two or More Races in [2010 census
-    data](https://api.census.gov/data/2010/dec/sf1/variables.html)
-
-<!-- badges: start -->
-<!-- badges: end -->
+<!-- 2. For the ease of your collaborators, it is better to generate the GEOID when sending data pull request. Itspulling data, instead of giving individual FIPS for different levels. It is not a big  deal, but potentially create human error when concatenating the FIPS. for example leading zero problem -->
 
 ## Questions/Contribution
 
@@ -191,3 +199,22 @@ If you would like to contribute to this tutorial, we are welcome any
 contribution via pull requests so that you get proper credit.
 
 #### References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-iceland2002" class="csl-entry">
+
+Iceland, John, and Daniel H Weinberg. 2002. *Racial and Ethnic
+Residential Segregation in the United States 1980-2000*. Bureau of
+Census.
+
+</div>
+
+<div id="ref-massey1988" class="csl-entry">
+
+Massey, Douglas S, and Nancy A Denton. 1988. “The Dimensions of
+Residential Segregation.” *Social Forces* 67 (2): 281–315.
+
+</div>
+
+</div>
