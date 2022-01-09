@@ -47,38 +47,6 @@ Total of 19 indexes. By default, the majority refers to non-Hispanic Whites.
   - "Indexes of evenness and exposure are correlated but measure different things: exposure measures depend on the relative sizes of the two groups being compared, while evenness measures do not."
   - Isolation index only require one group, a minority group
 
-# 2000 Residential Segregation Indices
-## Overview
-  - 2000 Census data was last retrieved on 2020/09/04 via R package _UScensus2000tract_ [@tract2012]
-  - Dissimilarity, interaction, isolation indices were calculated for each county, by aggregating census tract statistics
-  - Please refer to the end of _Appendix B_ of @iceland2002racial for the calculation equations.
-
-## Data File Location
-
-The county level indices file _(final product)_ is located at 
-    `S:\Regards\analysis\BoyiGuo\Residential Segregation\Data\county_level_RS_indices.csv`
-
-The supplementary track level file _(raw data)_ is located at 
-    `S:\Regards\analysis\BoyiGuo\Residential Segregation\Data\2000_track_data.csv`
-    
-_Appendix B_ of @iceland2002racial is located at
-    `S:\Regards\analysis\BoyiGuo\Residential Segregation\Doc\ResidentialSegregationScore_Intro.pdf`
-
-
-## Data Dictionary
-
-- _state_: FIPS state code in character format, 2-character long
-- _county_: FIPS county code in character format, 3-character long
-- _fips_: FIPS state+county code in character format, 5-character long
-- _dissimilarity_wb_: dissimilarity index (blacks relative to whites) for corresponding county in double format
-- _interaction_wb_: interaction index (blacks relative to whites) for corresponding county in double format
-- _isolation_b_: isolation index (blacks) for corresponding county in double format
-
-## Remarks
-
-- Due to technical difficulties, counties in Alaska and Hawaii were not included.
-- Tracks whose total population is 0, are excluded from the calculation
-- Please be \textcolor{red}{cautious} when reading in the data file: ___state_, _county_, _fips_ could be read in as numeric values instead of characters by mistake, which would remove the leading zeros and cause merging problems__
 
 
 
