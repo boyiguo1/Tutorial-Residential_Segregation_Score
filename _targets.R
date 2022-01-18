@@ -14,20 +14,13 @@ lapply(list.files("./R", full.names = TRUE, recursive = TRUE), source)
 tidycensus::census_api_key(Sys.getenv("CENSUS_API_KEY"))
 
 tar_plan(
-  # Optional: Calculate the RS for specific region
-  tar_file(geo_id_file,
-           "data/pharm_desert_2015.xls"),
-  tar_target(geoid_raw,
-             readxl::read_xls(path = geo_id_file)),
-  tar_target(geoid_dat,
-             clean_up_geo(geoid_raw)),
   
   # Configuration -----------------------------------------------------------
   ## TODO: Configure your calculation by replacing the following section
   tar_target(year, 2010),
   # In this analysis, we limits to certain required states
   tar_target(states, 
-             geoid_dat %>% pull(statefp) %>% unique()),
+             state.name),
   # Alternatively, you can supply a vector  of state names
   # tar_target(states, c("Arizona", "Utah"))
   tar_target(top_lvl, "tract"),
@@ -78,29 +71,21 @@ tar_plan(
              calc_RS_indices(top_dat, btm_dat),
              pattern = map(top_dat, btm_dat)
   ),
-  
-  
-  # Optional: merge residential segregation to the original data
-  tar_target(merged_dat,
-             left_join(
-               x = geoid_dat, y = rs_indices,
-               by = "geoid"
-             )
-  ),
+
   
   
   # Data Saving -------------------------------------------------------------
   # Optional: Save data to csv and rds format
   tar_target(save_csv_file,
-             write_csv(merged_dat, 
-                       "data/pharm_desert_rs_scores_2010_census_data.csv",
+             write_csv(rs_indices,
+                       "data/2010_US_census_tract_rs_scores.csv",
                        quote = "all" # to prevent deleting leading zero of FIPs
              )
   ),
-  
-  tar_target(save_rds_file,
-             saveRDS(merged_dat, 
-                     "data/pharm_desert_rs_scores_2010_census_data.rds")
-  )
+  # 
+  # tar_target(save_rds_file,
+  #            saveRDS(merged_dat, 
+  #                    "data/pharm_desert_rs_scores_2010_census_data.rds")
+  # )
   
 )
