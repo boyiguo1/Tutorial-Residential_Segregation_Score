@@ -3,6 +3,8 @@
 
 # Calculating Residential Segregation Indices
 
+[![DOI](https://zenodo.org/badge/432359045.svg)](https://zenodo.org/badge/latestdoi/432359045)
+
 The purpose of this repository is to provide a simple and reproducible
 [R](https://www.r-project.org/) pipeline to investigate residential
 segregation (RS) using US census data. The pipeline contains two
